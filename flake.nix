@@ -13,6 +13,8 @@
 nixFiles = contents: lib.filterAttrs (
     name: type: type == "regular" && lib.hasSuffix ".nix" name
   ) contents;
+### Convert a Json file to a nix attribute set
+readJson = path: builtins.fromJSON (builtins.readFile path);
         };
       };
     };
