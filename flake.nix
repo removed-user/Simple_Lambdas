@@ -9,6 +9,10 @@
         _module.args.lambdas = {
           ### Directory Contents utility lambda
           dirContents = path: builtins.readDir path;
+### Return only the .nix files from an attribute set
+nixFiles = contents: lib.filterAttrs (
+    name: type: type == "regular" && lib.hasSuffix ".nix" name
+  ) contents;
         };
       };
     };
